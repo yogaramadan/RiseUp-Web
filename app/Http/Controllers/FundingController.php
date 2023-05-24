@@ -57,6 +57,17 @@ class FundingController extends Controller
         ], 200);
     }
 
+    public function apiIndexDetail($id) {
+
+        $fundings = Funding::with('ukm')->where('id', $id)->first();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'List Data Funding',
+            'data' => $fundings
+        ], 200);
+    }
+
 
 
 
@@ -95,7 +106,6 @@ class FundingController extends Controller
             'fund_raise_use' => 'required',
             'ukm_id' => 'required',
             'target_amount' => 'required',
-            'current_amount' => 'required',
             'status' => 'required',
         ]);
 
